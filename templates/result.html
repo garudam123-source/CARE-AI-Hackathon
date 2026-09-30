@@ -1,0 +1,246 @@
+recommendation:
+        {{ explanation }}.
+        Recommended care pathway:
+        {{ care_pathway }}.
+    `;
+
+    const speech = new SpeechSynthesisUtterance(resultText);
+
+    speech.lang = "en-IN"<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DR AI HEALTHBOX | Analysis Result</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">DR AI HEALTHBOX</div>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+
+        <div class="card result-card">
+
+            <p>DR AI HEALTHBOX Analysis Complete</p>
+
+            <h1>Healthcare Guidance</h1>
+<button type="button" class="voice-btn" onclick="readResult()">
+    🔊 Read Result Aloud
+</button>
+            <!-- Priority -->
+           <div class="result-box priority-box
+    {% if result == 'High Priority' %}
+        priority-high
+    {% elif result == 'Needs Attention' %}
+        priority-medium
+    {% else %}
+        priority-low
+    {% endif %}">
+
+    <span class="priority-label">DR AI HEALTHBOX PRIORITY</span>
+    <h2>{{ result }}</h2>
+
+    {% if result == 'High Priority' %}
+        <p>Prompt attention recommended</p>
+    {% elif result == 'Needs Attention' %}
+        <p>Further attention may be helpful</p>
+    {% else %}
+        <p>No immediate concerning information reported</p>
+    {% endif %}
+
+</div>
+
+            <!-- Detected Indicators -->
+            <div class="info-section">
+                <h3>🔍 AI-Detected Health Indicators</h3>
+
+                {% if detected_symptoms %}
+                    <ul>
+                        {% for symptom in detected_symptoms %}
+                            <li>{{ symptom | capitalize }}</li>
+                        {% endfor %}
+                    </ul>
+                {% else %}
+                    <p>No specific health indicators were identified.</p>
+                {% endif %}
+            </div>
+<div class="info-section">
+    <h3>📊 Basic Health Readings</h3>
+
+    <div class="factor">
+        <strong>🌡️ Temperature:</strong>
+        {{ temperature if temperature else "Not provided" }} °C
+    </div>
+
+    <div class="factor">
+        <strong>❤️ Heart Rate:</strong>
+        {{ heart_rate if heart_rate else "Not provided" }} BPM
+    </div>
+
+    <div class="factor">
+        <strong>🫁 SpO₂:</strong>
+        {{ spo2 if spo2 else "Not provided" }} %
+    </div>
+    <div class="factor">
+    <strong>🩸 Blood Pressure:</strong>
+    {{ blood_pressure if blood_pressure else "Not provided" }} mmHg
+</div>
+            <!-- Assessment Factors -->
+            <div class="info-section">
+                <h3>📊 Assessment Factors</h3>
+
+                <div class="factor">
+                    <strong>Severity:</strong> {{ severity }}
+                </div>
+
+                <div class="factor">
+                    <strong>Duration:</strong> {{ duration }}
+                </div>
+
+                <div class="factor">
+                    <strong>Symptoms Getting Worse:</strong> {{ worsening }}
+                </div>
+
+                <div class="factor">
+                    <strong>Effect on Normal Activities:</strong> {{ activity_impact }}
+                </div>
+
+                <div class="factor">
+                    <strong>New or Unusual Symptoms:</strong> {{ new_symptoms }}
+                </div>
+            </div>
+
+            <!-- Why -->
+            <div class="info-section">
+                <h3>💡 Why this recommendation?</h3>
+
+                <p>{{ explanation }}</p>
+            </div>
+
+            <!-- Next Steps -->
+            <div class="info-section">
+                <h3>✅ Suggested Next Steps</h3>
+
+                <ul>
+    {% for step in next_steps %}
+        <li>{{ step }}</li>
+    {% endfor %}
+                </ul>
+            </div>
+
+            <!-- Doctor -->
+            <div class="info-section">
+                <h3>🩺 Suggested Healthcare Professional</h3>
+
+                <p>
+                    Based on the information provided, the suggested
+                    first point of care is:
+                </p>
+
+                <h3>{{ doctor }}</h3>
+
+                <p>
+                    This is only a guidance suggestion and not a diagnosis.
+                    A qualified healthcare professional can determine the
+                    appropriate evaluation.
+                </p>
+            </div>
+
+            <!-- Care Pathway -->
+            <div class="info-section">
+                <h3>🏥 Recommended Care Pathway</h3>
+
+                <p>{{ care_pathway }}</p>
+            </div><!-- Emergency Support -->
+{% if result == "High Priority" %}
+<div class="info-section emergency-section">
+    <h3>🚨 Emergency Support</h3>
+
+    <p>
+        If the situation may require urgent attention, select the
+        relevant emergency type to create a demo alert for the
+        healthcare dashboard.
+    </p>
+
+    <form action="/emergency" method="POST">
+        <select name="emergency_type" required>
+            <option value="">Select Emergency Type</option>
+            <option value="Possible Cardiac Emergency">
+                Possible Cardiac Emergency
+            </option>
+            <option value="Severe Breathing Difficulty">
+                Severe Breathing Difficulty
+            </option>
+            <option value="Accident / Injury">
+                Accident / Injury
+            </option>
+            <option value="Other Serious Situation">
+                Other Serious Situation
+            </option>
+        </select>
+
+        <button type="submit" class="btn emergency-btn">
+            🚨 Send Demo Alert
+        </button>
+    </form>
+
+    <p class="input-note">
+        Demo feature: this alert is sent only to the DR AI HEALTHBOX prototype dashboard.
+    </p>
+</div>
+{% endif %}
+            <!-- Safety -->
+            <div class="disclaimer">
+                <strong>⚠️ Safety Guidance</strong>
+
+
+                <p>
+                    DR AI HEALTHBOX does not diagnose diseases, prescribe medicines,
+                    or replace a healthcare professional.
+                    If symptoms become severe, rapidly worsen, or you feel
+                    seriously unwell, seek immediate medical attention.
+                </p>
+            </div>
+
+            <br>
+
+            <a href="/assessment" class="btn">
+                New Assessment
+            </a>
+
+            <br><br>
+
+            <a href="/">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+</section>
+<script>
+function readResult() {
+
+    const resultText = `
+        DR AI HEALTHBOX analysis complete.
+        Healthcare priority: {{ result }}.
+        Detected health indicators:
+        {{ detected_symptoms | join(', ') if detected_symptoms else 'None identified' }}.
+        Suggested healthcare professional: {{ doctor }}.
+        Why this reco;
+    speech.rate = 0.9;
+    speech.pitch = 1;
+
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(speech);
+}
+</script>
+</body>
+</html>

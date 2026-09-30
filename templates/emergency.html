@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DR AI HEALTHBOX | Emergency Alert</title>
+
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <div class="container">
+        <div class="logo">DR AI HEALTHBOX</div>
+    </div>
+</header>
+
+<section>
+    <div class="container">
+
+        <div class="card result-card">
+
+            <div class="emergency-icon">
+                🚨
+            </div>
+
+            <h1>Demo Alert Created</h1>
+
+            <p class="emergency-status">
+                Emergency support request has been recorded.
+            </p>
+
+            <div class="info-section">
+
+                <h3>🚨 Emergency Type</h3>
+
+                <p>
+                    <strong>{{ emergency_type }}</strong>
+                </p>
+
+            </div>
+
+            <div class="info-section">
+
+                <h3>📡 Dashboard Status</h3>
+
+                <p>
+                    Alert successfully generated for the
+                    DR AI HEALTHBOX healthcare dashboard.
+                </p>
+
+                <p>
+                    <strong>Status:</strong> Demo Alert Sent
+                </p>
+
+            </div>
+
+            <div class="disclaimer">
+
+                <strong>⚠️ Prototype Notice</strong>
+
+                <p>
+                    This is a demonstration feature for the
+                    DR AI HEALTHBOX hackathon prototype. It does not
+                    contact emergency services or replace
+                    professional medical assistance.
+                </p>
+
+            </div>
+
+            <br>
+
+            <a href="/assessment" class="btn">
+                New Assessment
+            </a>
+
+            <br><br>
+
+            <a href="/">
+                ← Back to Home
+            </a>
+
+        </div>
+
+    </div>
+</section>
+
+</body>
+</html>

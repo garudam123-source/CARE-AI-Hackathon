@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DR AI HEALTHBOX | Healthcare Navigation</title>
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+
+<body>
+
+<header>
+    <div class="container header-flex">
+        <div class="logo">DR AI HEALTHBOX</div>
+
+        <div class="language-switch">
+            <button onclick="setLanguage('en')">English</button>
+            <button onclick="setLanguage('ml')">മലയാളം</button>
+        </div>
+    </div>
+</header>
+
+<section class="hero">
+
+    <div class="container">
+
+        <h1>Intelligent Healthcare Support</h1>
+
+        <p>
+            DR AI HEALTHBOX helps users understand the appropriate level of
+            healthcare attention based on the health information they provide.
+        </p>
+
+        <a href="/assessment" class="btn">
+            Start Health Assessment
+        </a>
+        <br><br>
+
+<a href="/dashboard" class="btn">
+    🏥 Healthcare Dashboard
+</a>
+
+    </div>
+
+</section>
+<script>
+function setLanguage(language) {
+
+    if (language === "ml") {
+        document.querySelector(".hero h1").innerText =
+            "ബുദ്ധിമാനായ ആരോഗ്യ സഹായം";
+
+        document.querySelector(".hero p").innerText =
+            "നിങ്ങൾ നൽകുന്ന ആരോഗ്യ വിവരങ്ങളെ അടിസ്ഥാനമാക്കി അനുയോജ്യമായ ആരോഗ്യ പരിചരണ മാർഗ്ഗനിർദ്ദേശം നൽകാൻ DR AI HEALTHBOX സഹായിക്കുന്നു.";
+
+        document.querySelector(".hero .btn").innerText =
+            "ആരോഗ്യ പരിശോധന ആരംഭിക്കുക";
+
+    } else {
+
+        document.querySelector(".hero h1").innerText =
+            "Intelligent Healthcare Support";
+
+        document.querySelector(".hero p").innerText =
+            "DR AI HEALTHBOX helps users understand the appropriate level of healthcare attention based on the health information they provide.";
+
+        document.querySelector(".hero .btn").innerText =
+            "Start Health Assessment";
+    }
+}
+</script>
+</body>
+</html>
